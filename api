@@ -7,4 +7,33 @@ document.write(`
   margin: 0 auto .5em;
 }
 </style>
+
+<div style="text-align: center;">
+<button class="imgbtn imgbtn--cyan imgbtn--shake daicon-link" onclick="showExample()">Download Files</button>
+</div>
+
+<script type="text/javascript">
+  window.showExample = () => {
+Swal.fire({
+  title: 'Security',
+  html: '<div id="recaptcha"></div>',
+  confirmButtonColor: '#1F2937',
+  confirmButtonText: 'OK',
+  allowOutsideClick:false,
+  allowEscapeKey:false,
+  didOpen: () => {
+    grecaptcha.render('recaptcha', {
+      'sitekey': '6Lck5dscAAAAACbfBG2Pioc8lMiSsu1sA3yyfdek'
+    })
+  },
+  preConfirm: function () {
+    if (grecaptcha.getResponse().length === 0) {
+      Swal.showValidationMessage(`Por favor verifica que no eres un robot`)
+    }
+  }
+}).then(function() {
+    window.location.href = "https://sweetalert2.github.io/#examples";
+})
+}
+</script>
 `)
